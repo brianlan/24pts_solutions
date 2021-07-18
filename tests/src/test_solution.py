@@ -1,7 +1,7 @@
 import operator as op
 
 import pytest
-from src.solution import generate_solutions, get_possible_partitions, get_possible_outputs
+from src.solution import get_possible_partitions, get_possible_outputs
 
 
 def test_get_possible_partitions_1():

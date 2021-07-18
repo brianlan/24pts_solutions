@@ -45,5 +45,8 @@ def get_possible_outputs(cards: List[int]) -> List[int]:
         for left, right in get_possible_partitions(cards):
             for l in get_possible_outputs(left):
                 for r in get_possible_outputs(right):
-                    possible_outputs |= get_possible_outputs((l, r))
+                    o = get_possible_outputs((l, r))
+                    possible_outputs |= o
+                    if 12 in o and len(left) + len(right) == 4:
+                        print(f"Hint: {left=}, {right=}, {l=}, {r=}")
     return possible_outputs
