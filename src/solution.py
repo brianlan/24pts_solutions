@@ -27,7 +27,7 @@ def get_possible_partitions(cards: List[int]) -> Set[Tuple[Tuple[int]]]:
 
 
 @lru_cache(maxsize=None)
-def get_possible_outputs(cards: List[int]) -> List[int]:
+def get_possible_outputs(cards: List[int], hint=False, target=None, display_hint=False) -> List[int]:
     num_cards = len(cards)
     possible_outputs = set()
     if num_cards == 1:
@@ -47,6 +47,8 @@ def get_possible_outputs(cards: List[int]) -> List[int]:
                 for r in get_possible_outputs(right):
                     o = get_possible_outputs((l, r))
                     possible_outputs |= o
-                    if 12 in o and len(left) + len(right) == 4:
-                        print(f"Hint: {left=}, {right=}, {l=}, {r=}")
+                    if target and hint:
+                        if target in o and len(left) + len(right) == len(cards):
+                            if display_hint:
+                                print(f"Hint: {left=}, {right=}, {l=}, {r=}")
     return possible_outputs
